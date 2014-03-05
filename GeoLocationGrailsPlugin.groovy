@@ -1,12 +1,12 @@
 class GeoLocationGrailsPlugin {
     // the plugin version
-    def version = "0.1"
+    def version = "0.2"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.3 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
         "grails-app/views/error.gsp",
-            "grails-app/controllers"
+            "grails-app/controllers/com/intelligrape/geolocation/GeolocationController.groovy"
     ]
 
     // TODO Fill in these fields
