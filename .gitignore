@@ -13,7 +13,6 @@ DEA
 target/*
 target-eclipse/*
 out/*
-*.zip
 
 #logs
 *.log
