@@ -9,9 +9,10 @@ class GeoLocationService {
     static transactional = false
     def grailsApplication
 
-    public List listNearestLocationInOrder(GeoAddressDTO addressDTO, List locations){
+    public List listNearestLocationInOrder(GeoAddressDTO addressDTO, List<GeoDistance> locations){
         GeoPosition geoPosition = getLocation(addressDTO)
-        List nearestLocations = calculateDistanceFromLocations(geoPosition,locations)
+        List<GeoDistance> nearestLocations = calculateDistanceFromLocations(geoPosition,locations)
+        nearestLocations = sortAsPerDistance(nearestLocations)
         log.debug "Near locations in asc order from given location ${nearestLocations*.hubId}"
         return nearestLocations
     }
@@ -37,17 +38,15 @@ class GeoLocationService {
         return url
     }
 
-    private List calculateDistanceFromLocations(GeoPosition currentPos, List locations){
+    private List<GeoDistance> calculateDistanceFromLocations(GeoPosition currentPos, List<GeoDistance> locations){
         LatLng currentPosLatLng = new LatLng(currentPos.latitude, currentPos.longitude);
-        Map distanceFromCurrentPos=[:]
         locations.each{loc->
             LatLng destination = new LatLng(loc.latitude, loc.longitude)
 
-            double distance = calculateDistance(currentPosLatLng, destination)
-            log.debug "Distance from given location to loc $loc.hubId is  $distance"
-            distanceFromCurrentPos[distance] = loc
+            loc.distance = calculateDistance(currentPosLatLng, destination)
+            log.debug "Distance from given location to loc $loc.hubId is $loc.distance"
         }
-        return distanceFromCurrentPos?.sort{it.key}*.value
+        return locations
     }
 
     private double calculateDistance(LatLng source, LatLng destination){
@@ -64,5 +63,9 @@ class GeoLocationService {
 
     private String getMapsAPIKey(){
         grailsApplication.config.grails.plugins.geolocation.map.api.key
+    }
+
+    private List<GeoDistance> sortAsPerDistance(List<GeoDistance> locations){
+        locations.sort{it.distance}
     }
 }
