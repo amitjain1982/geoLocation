@@ -52,7 +52,6 @@ class GeoAddressDTO {
         String components = postalCode ? "postal_code:" + postalCode + "|" : ""
         components += country ? "country:" + country + "|" : ""
         components += locality ? "locality:" + locality + "|" : ""
-        components -= "|"
         return components
     }
 

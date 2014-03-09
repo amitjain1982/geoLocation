@@ -11,8 +11,9 @@ class GeolocationController {
         locations << new GeoDistance(2,28.6505535, 77.23189339999999) //ChandniChowk
         locations << new GeoDistance(4,28.4446394,77.46575469999999) // JayPee Aman Sec -151 Noida
 
+        GeoAddressDTO dto = new GeoAddressDTO(addressLine1: '199-A',addressLine2: 'plot no 1223', city: 'Noida', state: 'uttar pradesh', country: 'India', postalCode: '201305')
 //        GeoAddressDTO dto = new GeoAddressDTO(addressLine1: 'Sab mall, sector-18', city: 'Noida', state: 'uttar pradesh', country: 'India')
-        GeoAddressDTO dto = new GeoAddressDTO(addressLine1: 'golcha', city: 'new delhi', state: 'Delhi', country: 'India')
+//        GeoAddressDTO dto = new GeoAddressDTO(addressLine1: 'golcha', city: 'new delhi', state: 'Delhi', country: 'India')
 //        GeoAddressDTO dto = new GeoAddressDTO(addressLine1: '60, Ansari Road', addressLine2: 'darya ganj', city: 'new delhi', state: 'Delhi', country: 'India')
 //        GeoAddressDTO dto = new GeoAddressDTO(addressLine1: 'TilakMarg#$%^&*!@~_+', city: 'new delhi', state: 'Delhi', country: 'India')
 
