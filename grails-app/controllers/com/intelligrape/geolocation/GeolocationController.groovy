@@ -19,7 +19,7 @@ class GeolocationController {
 
         try {
             List nearestLocations = geoLocationService.listNearestLocationInOrder(dto,locations)
-            render nearestLocations.collect{["Hub : " + it.hubId +" - distance " + it.distance]}
+            render nearestLocations.collect{["Hub : " + it.locationId +" - distance " + it.distance]}
         } catch (RuntimeException e) {
             render e.message
         }
